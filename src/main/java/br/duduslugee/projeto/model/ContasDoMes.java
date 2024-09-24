@@ -14,11 +14,13 @@ public class ContasDoMes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String descrição;
+    private String descricao; // Removido o acento
     private Double valor;
 
-    @DateTimeFormat(style = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dataCadastro;
+
+    private String formattedData;
 
     public Long getId() {
         return id;
@@ -28,12 +30,12 @@ public class ContasDoMes {
         this.id = id;
     }
 
-    public String getDescrição() {
-        return descrição;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDescrição(String descrição) {
-        this.descrição = descrição;
+    public void setDescricao(String descricao) { // Removido o acento
+        this.descricao = descricao;
     }
 
     public Double getValor() {
@@ -50,5 +52,13 @@ public class ContasDoMes {
 
     public void setDataCadastro(LocalDate dataCadastro) {
         this.dataCadastro = dataCadastro;
+    }
+
+    public String getFormattedData() {
+        return formattedData;
+    }
+
+    public void setFormattedData(String formattedData) {
+        this.formattedData = formattedData;
     }
 }

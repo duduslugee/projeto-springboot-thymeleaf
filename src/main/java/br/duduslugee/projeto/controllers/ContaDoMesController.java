@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
 @Controller
 public class ContaDoMesController {
 
@@ -16,25 +19,28 @@ public class ContaDoMesController {
     private ContasDoMesService contasDoMesService;
 
     @GetMapping("/contas")
-    public String index() {
-        return "contas/listar-contas"; // Redireciona para a página de listagem
+    public String index(Model model) {
+        List<ContasDoMes> contasdomes = contasDoMesService.listarContas();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        for (ContasDoMes conta : contasdomes) {
+            String formattedDate = conta.getDataCadastro().format(formatter);
+            conta.setFormattedData(formattedDate);
+        }
+
+        model.addAttribute("contasdomes", contasdomes);
+        return "contas/listar-contas";
     }
 
     @GetMapping("/contas/adicionar")
     public String adicionarContaForm(Model model) {
-        model.addAttribute("contasdomes", new ContasDoMes()); // Cria um novo objeto ContasDoMes para o formulário
-        return "contas/adicionar-conta"; // Retorna a página do formulário de adição
+        model.addAttribute("contasdomes", new ContasDoMes());
+        return "contas/adicionar-conta";
     }
 
     @PostMapping("/contas/adicionar")
     public String adicionarConta(@ModelAttribute ContasDoMes contasDoMes) {
         contasDoMesService.adicionarConta(contasDoMes);
-        return "redirect:/contas"; // Redireciona para a listagem de contas
-    }
-
-    @GetMapping("/contas/listar")
-    public String listarContas(Model model) {
-        model.addAttribute("contasdomes", contasDoMesService.listarContas()); // Supondo que você tenha um método para listar contas
-        return "contas/listar-contas"; // Retorna a página de listagem de contas
+        return "redirect:/contas";
     }
 }
