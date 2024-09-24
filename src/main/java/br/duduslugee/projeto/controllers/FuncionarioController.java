@@ -49,7 +49,7 @@ public class FuncionarioController {
     public String editarFuncionario(@PathVariable("id") Long id, Model model) {
         Funcionario funcionario = funcionarioService.buscarFuncionarioPorId(id);
         model.addAttribute("funcionario", funcionario);
-        return "funcionario/editar-funcionario"; // Substitua pelo nome correto do seu template de edição
+        return "funcionario/editar-funcionario";
     }
 
     @PostMapping("/funcionario/editar")
