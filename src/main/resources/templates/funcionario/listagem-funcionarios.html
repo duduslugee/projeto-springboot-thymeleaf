@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h1>Listagem de Funcionários</h1>
+<table>
+    <thead>
+    <tr>
+        <th>CPF</th>
+        <th>Nome</th>
+        <th>Salário</th>
+        <th>Ações</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="funcionario : ${funcionarios}">
+        <td th:text="${funcionario.cpf}"></td>
+        <td th:text="${funcionario.nome}"></td>
+        <td th:text="${funcionario.salario}"></td>
+        <td>
+            <a th:href="@{/funcionarios/excluir/{id}(id=${funcionario.id})}">Excluir</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/funcionarios">Voltar para Adicionar Funcionários</a>
+</body>
+</html>
