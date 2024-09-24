@@ -1,9 +1,9 @@
 package br.duduslugee.projeto.repository;
 
-import br.duduslugee.projeto.model.Funcionario;
+import br.duduslugee.projeto.model.Servico;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> {
+public interface ServicoRepository extends JpaRepository<Servico, Long> {
 }
