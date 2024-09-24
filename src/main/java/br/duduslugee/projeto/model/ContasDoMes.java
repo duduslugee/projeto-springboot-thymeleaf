@@ -1,6 +1,8 @@
 package br.duduslugee.projeto.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,12 +11,13 @@ import java.time.LocalDate;
 @Entity
 public class ContasDoMes {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String descrição;
     private Double valor;
 
-    @DateTimeFormat(style = "yyyy-MM-aa")
+    @DateTimeFormat(style = "yyyy-MM-dd")
     private LocalDate dataCadastro;
 
     public Long getId() {

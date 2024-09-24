@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ContasDoMesRepository extends JpaRepository<ContasDoMes, Long> {
+
 }
