@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Veículos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Painel de Veículos</h2>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Placa</th>
+            <th>Modelo</th>
+            <th>Marca</th>
+            <th>Ano do Modelo</th>
+            <th>Ano de Fabricação</th>
+            <th>Cor</th>
+            <th>Preço</th>
+            <th>Ações</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="veiculo : ${veiculos}">
+            <td th:text="${veiculo.id}"></td>
+            <td th:text="${veiculo.placa}"></td>
+            <td th:text="${veiculo.modelo}"></td>
+            <td th:text="${veiculo.marca}"></td>
+            <td th:text="${veiculo.anoModelo}"></td>
+            <td th:text="${veiculo.anoFabricacao}"></td>
+            <td th:text="${veiculo.cor}"></td>
+            <td th:text="${veiculo.preco}"></td>
+            <td>
+                <a th:href="@{/veiculos/excluir/{id}(id=${veiculo.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir este veículo?');">Excluir</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Botão de adicionar veículo -->
+    <div class="text-start mt-3">
+        <a href="/veiculos/adicionar" class="btn btn-primary">Adicionar Novo Veículo</a>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
